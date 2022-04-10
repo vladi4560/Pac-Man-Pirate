@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.button.MaterialButton;
@@ -30,59 +31,42 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         InitViews();
         game = new Game();
-        startTimer();
     }
 
-
+    // Every tick of the clock the game will "play"
     private void play() {
         game.nextMove(this.choice);
         if (game.getHitcheck()) {
             updateLivesUI();
-            if (game.isGameOver())
+            if (game.isGameOver()){
                 finish();
+            Toast.makeText(getApplicationContext(),"Game Over",Toast.LENGTH_SHORT).show();}
         }
         restartBoard();
         updateScoreUI();
     }
-
+    // Updates the score of the game in the UI
     private void updateScoreUI() {
        score.setText(""+game.getScore());
     }
 
     private void restartBoard() {
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 3; j++) {
+        for (int i = 0; i < Game.MAXROW; i++) {
+            for (int j = 0; j < Game.MAXCOL; j++) {
                 mat[i][j].setImageResource(R.drawable.ic_square_24);
             }
         }
         mat[game.getPlayer().getX()][game.getPlayer().getY()].setImageResource(R.drawable.img_jack);
         mat[game.getEnemy().getX()][game.getEnemy().getY()].setImageResource(R.drawable.img_navy);
-       // mat[game.getPlayer().getX()][game.getPlayer().getY()].setVisibility(View.VISIBLE);
-       // mat[game.getEnemy().getX()][game.getEnemy().getY()].setVisibility(View.VISIBLE);
     }
 
-    private void updateBoard() {
-        if (game.getPlayer().getX() == game.getPlayer().getLastX() && game.getPlayer().getY() == game.getPlayer().getLastY()) {
-        } else {
-            mat[game.getPlayer().getLastX()][game.getPlayer().getLastY()].setVisibility(View.INVISIBLE);
-            mat[game.getPlayer().getX()][game.getPlayer().getY()].setImageResource(R.drawable.img_jack);
-            mat[game.getPlayer().getX()][game.getPlayer().getY()].setVisibility(View.VISIBLE);
-        }
-        if (game.getEnemy().getX() == game.getEnemy().getLastX() && game.getEnemy().getY() == game.getEnemy().getLastY()) {
-        } else {
-
-            mat[game.getEnemy().getLastX()][game.getEnemy().getLastY()].setVisibility(View.INVISIBLE);
-            mat[game.getEnemy().getX()][game.getEnemy().getY()].setImageResource(R.drawable.img_navy);
-            mat[game.getEnemy().getX()][game.getEnemy().getY()].setVisibility(View.VISIBLE);
-        }
-    }
-
+    // Updates The UI if there any loses in life
     private void updateLivesUI() {
         for (int i = 2; game.getLives() < i + 1; i--)
             lives[i].setVisibility(View.INVISIBLE);
 
     }
-
+    // initialize All the
     private void InitViews() {
         mat = new ImageView[5][3];
         background = findViewById(R.id.background);
@@ -92,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         InitBtn();
         InitLives();
     }
-
+    // initialize All the Image View in Mat
     private void InitMat() {
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 3; j++) {
@@ -103,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
-
+    // initialize the Image View with the lives
     private void InitLives() {
         lives = new ImageView[3];
         for (int i = 0; i < 3; i++) {
@@ -112,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
             lives[i] = (ImageView) findViewById(id);
         }
     }
-
+    // initialize the moving buttons
     private void InitBtn() {
         buttons = new MaterialButton[4];
         for (int i = 0; i < 4; i++) {
@@ -126,14 +110,14 @@ public class MainActivity extends AppCompatActivity {
         buttons[3].setOnClickListener(view -> moveChoice(Game.LEFT));
     }
 
+    // set on click method that decide the direction of the Player
     private boolean oneTime = true;
-
     private void moveChoice(int num) {
         this.choice = num;
-//        if (oneTime) {
-//            oneTime=false;
-//            startTimer();
-//        }
+        if (oneTime) {
+            oneTime=false;
+            startTimer();
+        }
     }
 
 
@@ -148,31 +132,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private TIMER_STATUS timerStatus = TIMER_STATUS.OFF;
-//
-//    private void startTimer() {
-//        timerStatus = TIMER_STATUS.RUNNING;
-//
-//        timer = new Timer();
-//        timer.scheduleAtFixedRate(new TimerTask() {
-//            @Override
-//            public void run() {
-//                tick();
-//            }
-//        }, 0, DELAY);
-//
-//    }
-
-    private void tick() {
-
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                play();
-            }
-        });
-    }
-
-
     @Override
     protected void onPause() {
         super.onPause();

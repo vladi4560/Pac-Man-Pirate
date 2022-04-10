@@ -9,7 +9,7 @@ public class Game {
     private boolean hitcheck=false;
     private int lives = 3;
     private int score=0;
-    public static final int UP = 0, RIGHT = 1, DOWN = 2, LEFT = 3, maxCol = 3, maxRow = 5;
+    public static final int UP = 0, RIGHT = 1, DOWN = 2, LEFT = 3, MAXCOL = 3, MAXROW = 5;
 
     public Game() {
         player = new Player();
@@ -26,7 +26,7 @@ public class Game {
         hitCheck();
         setScore();
     }
-
+    // restart locations of the two players on the board after a hit
     public void restartLocation(){
        player.hero();
        enemy.enemy();
@@ -35,7 +35,7 @@ public class Game {
     public boolean getHitcheck() {
         return hitcheck;
     }
-
+    // check if there was any hit between the player and the enemy
     public void hitCheck() {
         if(((player.getLastX()==enemy.getX() && player.getLastY()==enemy.getY()) && (enemy.getLastX()==player.getX() && enemy.getLastY()==player.getY()))
                 || (player.getX() == enemy.getX() && enemy.getY() == player.getY())) {
@@ -49,7 +49,7 @@ public class Game {
         }
         hitcheck=false;
     }
-
+    // Next move of the player by his choice
     public void movePlayer(int direction) {
         if (direction == UP) {
             if (player.getX() == 0) {
@@ -63,7 +63,7 @@ public class Game {
             }
         }
         if (direction == RIGHT) {
-            if (player.getY() == 2){
+            if (player.getY() == MAXCOL -1){
                 player.setLastY(player.getY());
                 }
             else {
@@ -72,7 +72,7 @@ public class Game {
             }
         }
         if (direction == DOWN) {
-            if (player.getX() == 4){
+            if (player.getX() == MAXROW-1 ){
                 player.setLastX(player.getX());
             }
 
@@ -93,7 +93,7 @@ public class Game {
         }
 
     }
-
+    // Next move of the enemy by random
     public void moveEnemy(int direction) {
         if (direction == UP) {
             if (enemy.getX() == 0){
@@ -105,7 +105,7 @@ public class Game {
 
         }
         if (direction == RIGHT) {
-            if (enemy.getY() == 2){
+            if (enemy.getY() == MAXCOL-1){
                 enemy.setLastY(enemy.getY());}
             else {
                 enemy.setLastY(enemy.getY());
@@ -114,7 +114,7 @@ public class Game {
 
         }
         if (direction == DOWN) {
-            if (enemy.getX() == 4){
+            if (enemy.getX() == MAXROW-1){
                 enemy.setLastX(enemy.getX());
                 enemy.setX(0);
             }

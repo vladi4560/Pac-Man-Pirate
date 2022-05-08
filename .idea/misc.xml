@@ -14,7 +14,14 @@
         <entry key="..\:/Users/vladk/AndroidStudioProjects/PacMananime/app/src/main/res/drawable/ic_pirate.xml" value="0.137" />
         <entry key="..\:/Users/vladk/AndroidStudioProjects/PacMananime/app/src/main/res/drawable/ic_square_24.xml" value="0.1395" />
         <entry key="..\:/Users/vladk/AndroidStudioProjects/PacMananime/app/src/main/res/drawable/ic_up.xml" value="0.1395" />
+        <entry key="..\:/Users/vladk/AndroidStudioProjects/PacMananime/app/src/main/res/layout/activity_game.xml" value="0.2911458333333333" />
+        <entry key="..\:/Users/vladk/AndroidStudioProjects/PacMananime/app/src/main/res/layout/activity_gameover.xml" value="0.2869791666666667" />
         <entry key="..\:/Users/vladk/AndroidStudioProjects/PacMananime/app/src/main/res/layout/activity_main.xml" value="0.2879999900124293" />
+        <entry key="..\:/Users/vladk/AndroidStudioProjects/PacMananime/app/src/main/res/layout/activity_menu.xml" value="0.21818181061547676" />
+        <entry key="..\:/Users/vladk/AndroidStudioProjects/PacMananime/app/src/main/res/layout/activity_top_ten.xml" value="0.2911458333333333" />
+        <entry key="..\:/Users/vladk/AndroidStudioProjects/PacMananime/app/src/main/res/layout/example.xml" value="0.2869791666666667" />
+        <entry key="..\:/Users/vladk/AndroidStudioProjects/PacMananime/app/src/main/res/layout/fragment_map.xml" value="0.2911458333333333" />
+        <entry key="..\:/Users/vladk/AndroidStudioProjects/PacMananime/app/src/main/res/layout/fragment_score.xml" value="0.2911458333333333" />
       </map>
     </option>
   </component>

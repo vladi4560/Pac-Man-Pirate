@@ -24,9 +24,9 @@ public class Game {
 
     public void nextMove(int playerDirection) {
         Random random = new Random();
-        //int randomDirection = random.nextInt(4);
+        int randomDirection = random.nextInt(4);
         moveOnBoard(this.player, playerDirection);
-        moveOnBoard(this.enemy, 2);
+        moveOnBoard(this.enemy, randomDirection);
         //hitCheck();
         hitCheck1();
         hitBonusCheck();
@@ -53,19 +53,19 @@ public class Game {
     }
 
     // check if there was any hit between the player and the enemy
-    public void hitCheck() {
-        if (((player.getLastX() == enemy.getX() && player.getLastY() == enemy.getY()) && (enemy.getLastX() == player.getX() && enemy.getLastY() == player.getY()))
-                || (player.getX() == enemy.getX() && enemy.getY() == player.getY())) {
-            hitCheck = true;
-            lives--;
-            restartLocation();
-            if (lives == 0) {
-                gameOver = true;
-            }
-            return;
-        }
-        hitCheck = false;
-    }
+//    public void hitCheck() {
+//        if (((player.getLastX() == enemy.getX() && player.getLastY() == enemy.getY()) && (enemy.getLastX() == player.getX() && enemy.getLastY() == player.getY()))
+//                || (player.getX() == enemy.getX() && enemy.getY() == player.getY())) {
+//            hitCheck = true;
+//            lives--;
+//            restartLocation();
+//            if (lives == 0) {
+//                gameOver = true;
+//            }
+//            return;
+//        }
+//        hitCheck = false;
+//    }
     public void hitCheck1() {
         if (player.getX() == enemy.getX() && enemy.getY() == player.getY()) {
             hitCheck = true;
